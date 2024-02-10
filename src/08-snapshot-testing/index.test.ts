@@ -4,22 +4,36 @@ import { generateLinkedList } from './index';
 describe('generateLinkedList', () => {
   // Check match by expect(...).toStrictEqual(...)
   test('should generate linked list from values 1', () => {
-    const expected = { value: 1, next: { value: null, next: null } };
-    const list = generateLinkedList([1]);
-    expect(list).toStrictEqual(expected);
+    const list = generateLinkedList([1, true]);
+    expect(list).toStrictEqual({
+      value: 1,
+      next: {
+        value: true,
+        next: {
+          value: null,
+          next: null
+        }
+      },
+    });
   });
 
   // Check match by comparison with snapshot
   test('should generate linked list from values 2', () => {
-    const list = generateLinkedList([1, 2]);
+    const list = generateLinkedList([1, [], '123', false]);
     expect(list).toMatchInlineSnapshot(`
       {
         "next": {
           "next": {
-            "next": null,
-            "value": null,
+            "next": {
+              "next": {
+                "next": null,
+                "value": null,
+              },
+              "value": false,
+            },
+            "value": "123",
           },
-          "value": 2,
+          "value": [],
         },
         "value": 1,
       }

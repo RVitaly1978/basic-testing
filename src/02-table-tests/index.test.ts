@@ -18,12 +18,14 @@ const testCases = [
     { a: 2, b: 2, action: Action.Exponentiate, expected: 4 },
     { a: 9, b: 2, action: Action.Exponentiate, expected: 81 },
     { a: 6, b: 2, action: 'add', expected: null },
+    { a: 6, b: 2, action: false, expected: null },
     { a: '2', b: 2, action: Action.Add, expected: null },
+    { a: 2, b: true, action: Action.Add, expected: null },
     { a: '9', b: '2', action: '**', expected: null },
 ];
 
 describe('simpleCalculator', () => {
-  test.each(testCases)('should return $expected for ($a, $b, $action)', ({ a, b, action, expected }) => {
+  test.each(testCases)('should return $expected for ($a $action $b)', ({ a, b, action, expected }) => {
     if (expected === null) {
       expect(simpleCalculator({ a, b, action })).toBeNull();
     } else {

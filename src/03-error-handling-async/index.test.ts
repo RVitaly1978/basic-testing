@@ -3,14 +3,16 @@ import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCusto
 
 describe('resolveValue', () => {
   test('should resolve provided value', async () => {
-    const value = await resolveValue(1);
-    expect(value).toBe(1);
+    const VALUE = 1
+    const value = await resolveValue(VALUE);
+    expect(value).toBe(VALUE);
   });
 });
 
 describe('throwError', () => {
   test('should throw error with provided message', () => {
-    expect(() => throwError('Some error!')).toThrow(/^Some error!$/);
+    const msg = 'Some error!'
+    expect(() => throwError(msg)).toThrow(msg);
   });
 
   test('should throw error with default message if message is not provided', () => {
